@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CBS</title>
+    <link href="./assets/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <canvas id="canvas" width="0" height="0" style="display: none"></canvas>
+
+    <div id="controls">
+      <button
+        class="btn btn-primary"
+        id="canvasValue"
+        onclick="canvasGizleGoster()"
+      >
+        Kanvas Ayarla
+      </button>
+      <br />
+      <div id="controlCanvas" style="display: none">
+        <br />
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Genişlik&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="genislik"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Yükseklik</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="yukseklik"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <button type="button" class="btn btn-primary" onclick="canvasSize()">
+          Kanvas Oluştur
+        </button>
+      </div>
+      <hr style="background-color: wheat" />
+
+      <button
+        class="btn btn-success"
+        id="noktaValue"
+        onclick="noktaGizleGoster()"
+        disabled
+      >
+        Nokta
+      </button>
+      <br />
+      <div id="controlNokta" style="display: none">
+        <br />
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Nokta X Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="noktaX"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Nokta Y Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="noktaY"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <input
+          id="noktaBuyukluk"
+          type="range"
+          step="1"
+          min="1"
+          max="3"
+          value="1"
+        />
+        <br />
+        <button type="button" class="btn btn-success" onclick="noktaMethod()">
+          Nokta Oluştur
+        </button>
+      </div>
+      <hr style="background-color: wheat" />
+
+      <button
+        class="btn btn-danger"
+        id="cizgiValue"
+        onclick="cizgiGizleGoster()"
+        disabled
+      >
+        Çizgi
+      </button>
+      <br />
+      <div id="controlCizgi" style="display: none">
+        <br />
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Çizgi X Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="cizgiX"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Çizgi Y Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="cizgiY"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <input
+          id="cizgiBuyukluk"
+          type="range"
+          step="1"
+          min="1"
+          max="3"
+          value="1"
+        />
+        <br />
+        <button
+          type="button"
+          id="cizgiButton"
+          class="btn btn-danger"
+          onclick="cizgiMethod()"
+        >
+          1.Koordinat
+        </button>
+      </div>
+      <hr style="background-color: wheat" />
+
+      <button
+        class="btn btn-warning"
+        id="polygonValue"
+        onclick="polygonGizleGoster()"
+        disabled
+      >
+        Polygon
+      </button>
+      <br />
+      <div id="controlPolygon" style="display: none">
+        <br />
+        <div>
+          <input type="radio" id="bos" name="bos" checked />
+          <label style="color: white" for="bos"> İçini Boş Bırak</label><br />
+
+          <input type="radio" id="tara" name="bos" />
+          <label style="color: white" for="tara"> İçini Tara</label><br />
+
+          <input type="radio" id="doldur" name="bos" />
+          <label style="color: white" for="doldur"> İçini Doldur</label><br />
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Çokgen X Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="cokgenX"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm"
+              >Çokgen Y Koordinatı&nbsp;&nbsp;</span
+            >
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            id="cokgenY"
+            aria-label="Small"
+            aria-describedby="inputGroup-sizing-sm"
+          />
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-warning"
+          onclick="cokgenMethod()"
+          id="buttonValue"
+        >
+          1.Koordinat
+        </button>
+        <form id="polygonKoordinat" style="display: inline-block;margin-left: 5px;"></form> 
+      </div>
+      <hr style="background-color: wheat" />
+
+      <button
+        class="btn btn-info"
+        id="koordinatValue"
+        onclick="koordinatGizleGoster()"
+        disabled
+      >
+        Koordinat
+      </button>
+      <br />
+      <div style="color: white; display: none" id="controlKoordinat">
+        <br />
+        X Koordinatı : <a id="xkoordinat"></a> <br />
+        Y Koordinatı : <a id="ykoordinat"></a>
+      </div>
+      <hr style="background-color: wheat" />
+
+      <div class="buttons" style="display: inline;"> 
+        <button type="button" id="clearCanvas" class="btn btn-danger" disabled>
+          <a style="color: white; text-decoration: none" href="index.html"
+            >Temizle</a
+          >
+        </button>
+        <button type="button" id="jsSave" class="btn btn-primary" disabled>
+          Kaydet
+        </button>
+      </div>
+    </div>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

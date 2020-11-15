@@ -1,0 +1,38 @@
+*{
+    border:0;
+    padding:0;
+    margin:0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+body{
+    background-color: #000029!important;
+}
+
+canvas{
+    position: relative; 
+    left:300px;
+    border: 1px solid gray;
+    cursor: crosshair;
+    background-color: white;
+}
+
+#controls{
+    position: fixed;
+    width: 300px;
+    padding:10px;
+    top: 0;
+    background-color: black;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.buttons{
+    position: relative;
+    bottom: 0;
+    float: right;
+}
